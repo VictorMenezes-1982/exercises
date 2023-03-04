@@ -1,0 +1,99 @@
+import os
+os.system('cls')
+
+questions = [
+    {
+        'Pergunta': 'Uma das grandes descobertas do período Paleolítico foi:',
+        'Opções': [
+            'O fogo',
+            'A roda',
+            'Fabricação de ferramentas de metal',
+            'O sedentarismo',
+            'Fabricação de roupas de linho e algodão'
+        ],
+        'Resposta': 'O fogo',
+    },
+    {
+        'Pergunta': 'Que evento marca o início da Idade Contemporânea?',
+        'Opções': [
+            'Revolução Francesa',
+            'Tomada de Constantinopla',
+            'Reforma Protestante',
+            'Primeira Guerra Mundial',
+            'Segunda Guerra Mundial'
+        ],
+        'Resposta': 'Revolução Francesa',
+    },
+    {
+        'Pergunta': 'Sobre a Cabanagem é correto afirmar:',
+        'Opções': [
+            'Foi uma revolta realizada no interior da Província do Maranhão entre os anos de 1838 a 1841.',
+            'Foi uma revolução ocorrida no Rio Grande do Sul entre os anos de 1835 a 1845.',
+            'Foi uma revolta popular realizada no Grão-Pará entre os anos de 1835 e 1840.',
+            'Foi uma rebelião que aconteceu na Província da Bahia no ano de 1835.',
+            'Foi uma rebelião que aconteceu na Província da Bahia no ano de 1835.'
+        ],
+        'Resposta': 'Foi uma revolta popular realizada no Grão-Pará entre os anos de 1835 e 1840.'
+    },
+    {
+        'Pergunta': 'Qual o nome do processo em que o corpo dos faraós era submetido após a morte?',
+        'Opções': [
+            'Cremação',
+            'Mumificação',
+            'Sepultamento',
+            'Enterro',
+            'Meditação'
+        ],
+        'Resposta': 'Mumificação',
+    },
+    {
+        'Pergunta': 'É correto afirmar que Tiradentes foi:',
+        'Opções': [
+            'Líder da Inconfidência Mineira',
+            'Líder da Guerra dos Emboabas',
+            'Líder da Guerra dos Canudos',
+            'Líder da Conjuração Baiana',
+            'Líder da Guerra dos Mascates'
+        ],
+        'Resposta': 'Líder da Inconfidência Mineira',
+    },
+]
+
+print()
+print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=')
+right_answer = 0
+wrong_answer = 0
+
+for question in questions:
+    print(question['Pergunta'])
+    print()
+
+    for i, option in enumerate(question['Opções']):
+        print(f'{i}) {option}')
+
+    print('')
+
+    while True:
+        answer = input('Escolha uma opção (Digite o número correspondente): ')
+
+        if not answer.isdigit():
+            print("Opção inválida. Digite apenas números.")
+        else:
+            answer = int(answer)
+            break
+
+    if answer == question['Opções'].index(question['Resposta']):
+        os.system('cls')
+        print('Parabéns! Você acertou! 💪')
+        right_answer += 1
+
+    else:
+        os.system('cls')
+        print('Você errou! ❌ ')
+        print('Resposta correta:', question['Resposta'])
+        wrong_answer += 1
+
+    print('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=')
+
+
+print(f'Você acertou {right_answer} perguntas e errou {wrong_answer}!')
