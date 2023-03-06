@@ -1,0 +1,20 @@
+import random
+
+options = ['Pedra', 'Papel', 'Tesoura']
+
+while True:
+    random_choice = random.choice(options)
+
+    choice = int(input('Escolha: \n' '1 - Pedra\n' '2 - Papel\n' '3 - Tesoura\n'))
+    user_choice = options[choice - 1]
+
+    print(f'Seu oponente escolheu {random_choice}')
+
+    if random_choice == user_choice:
+        print('Empate! Tente novamente')
+    elif (user_choice == 'Pedra' and random_choice == 'Tesoura') or (user_choice == 'Papel' and random_choice == 'Pedra') or (user_choice == 'Tesoura' and random_choice == 'Papel'):
+        print(f'{user_choice} vence {random_choice}. Você ganhou!')
+        break
+    else:
+        print(f'{random_choice} vence {user_choice}. Você perdeu!')
+        break
