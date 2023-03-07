@@ -1,0 +1,104 @@
+import os
+import re
+os.system('cls')
+
+print('Bem vindo ao sistema de cadastro! ')
+print('-' * 20)
+
+users = []
+
+def create_user():
+    index = len(users) + 1
+    username = input('Digite o nome do usuário: ')
+    while True:
+        phone_number = input('Digite o número do telefone no formato (xx)xxxxx-xxxx: ')
+        if re.fullmatch('\d{2}\d{5}\d{4}', phone_number):
+            break
+        else:
+            os.system('cls')
+            print('Número de telefone inválido! Tente novamente.')
+    while True:
+        email = input('Digite o e-mail: ')
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            os.system('cls')
+            print('E-mail inválido. Digite um e-mail válido.')
+        else:
+            break
+
+    while True:
+        birth_date = input('Digite a data de nascimento no formato dd/mm/aaaa: ')
+        if len(birth_date) == 10 and birth_date[2] == '/' and birth_date[5] == '/':
+            day, month, year = birth_date.split('/')
+            if day.isdigit() and month.isdigit() and year.isdigit():
+                day = int(day)
+                month = int(month)
+                year = int(year)
+                if day > 0 and day <= 31 and month > 0 and month <= 12 and year > 1900:
+                    break
+        print('Data de nascimento inválida. Tente novamente.')
+                
+    user = {'matricula': index, 'name': username, 'phone': phone_number, 'email': email,
+            'birthdate': birth_date}
+    users.append(user)
+    os.system('cls')
+    print('Usuário criado com sucesso')
+    print('-' * 20)
+
+def delete_user():
+    index = int(input('Digite o número do usuário a ser excluído: '))
+    user = users[index-1]
+    del users[index-1]
+    os.system('cls')
+    print('Registro deletado com sucesso')
+
+def update_user():
+    index = int(input('Digite o número do usuário a ser alterado: '))
+    name = input('Digite o novo nome do usuário: ')
+    phone = input('Digite o novo número do telefone: ')
+    email = input('Digite o novo e-mail: ')
+    
+    while True:
+        birth_date = input('Digite a nova data de nascimento no formato dd/mm/aaaa: ')
+        if len(birth_date) == 10 and birth_date[2] == '/' and birth_date[5] == '/':
+            day, month, year = birth_date.split('/')
+            if day.isdigit() and month.isdigit() and year.isdigit():
+                day = int(day)
+                month = int(month)
+                year = int(year)
+                if day > 0 and day <= 31 and month > 0 and month <= 12 and year > 1900:
+                    break
+        print('Data de nascimento inválida. Tente novamente.')
+        
+    users[index-1]['name'] = name
+    users[index-1]['phone'] = phone
+    users[index-1]['email'] = email
+    users[index-1]['birthdate'] = birth_date
+    os.system('cls')
+    print('Registro alterado com sucesso')
+
+def list_users():
+    os.system('cls')
+    for user in users:
+        print('Matrícula:', user['matricula'])
+        print('Nome:', user['name'])
+        print('Telefone:', user['phone'])
+        print('E-mail:', user['email'])
+        print('Data de nascimento:', user['birthdate'])
+        print('-' * 20)
+
+
+while True:
+    answer = input('Digite: \n [C] para cadastrar usuário\n [D] para deletar\n [A] para alterar\n [L] para listar\n [S] para sair da aplicação\n' )
+    if answer.lower() == 'c':
+        create_user()
+    elif answer.lower() == 'd':
+        delete_user()
+    elif answer.lower() == 'a':
+        update_user()
+    elif answer.lower() == 'l':
+        list_users()
+    elif answer.lower() == 's':
+        print('Encerrando aplicação. Até a próxima!')
+        break
+    else:
+        print('Opção inválida')
